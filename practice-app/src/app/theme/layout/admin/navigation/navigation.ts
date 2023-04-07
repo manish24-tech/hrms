@@ -6,6 +6,7 @@ export interface NavigationItem {
   type: 'item' | 'collapse' | 'group';
   translate?: string;
   icon?: string;
+  role:string = 'employee';
   hidden?: boolean;
   url?: string;
   classes?: string;
@@ -41,11 +42,32 @@ const NavigationItems = [
       },
       {
         id: 'page-layouts',
-        title: 'Horizontal Layouts',
+        title: 'Edit Profile',
         type: 'item',
-        url: '/layout/horizontal',
+        // url: '/layout/horizontal',
+        url: '/profile',
         target: true,
         icon: 'feather icon-layout'
+      },
+      {
+        id: 'page-layouts',
+        title: 'Leaves',
+        type: 'item',
+        // url: '/layout/horizontal',
+        url: '/leave-request',
+        target: true,
+        icon: 'feather icon-layout',
+        role : 'employee'
+      },
+      {
+        id: 'page-layouts',
+        title: 'Timesheet',
+        type: 'item',
+        // url: '/layout/horizontal',
+        url: '/timesheet',
+        target: true,
+        icon: 'feather icon-layout',
+        role : 'employee'
       }
     ]
   },
@@ -143,5 +165,11 @@ const NavigationItems = [
 export class NavigationItem {
   public get() {
     return NavigationItems;
+  }
+
+
+
+  getMenuItems(role: string): NavigationItems[] {
+    return NavigationItems.filter(item => item.role === role);
   }
 }
