@@ -28,7 +28,11 @@ import { NavigationItem } from './theme/layout/admin/navigation/navigation';
 import { NgbButtonsModule, NgbDropdownModule, NgbTabsetModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { LeaveRequestComponent } from './demo/pages/leave-request/leave-request.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TimesheetComponent } from './demo/pages/timesheet/timesheet.component';
+import { ProfileComponent } from './demo/pages/profile/profile.component';
 const APP_MODULE = [
   BrowserModule,
   CommonModule,
@@ -41,7 +45,8 @@ const APP_MODULE = [
   NgbTooltipModule,
   NgbButtonsModule,
   NgbTabsetModule,
-  HttpClientModule
+  HttpClientModule,
+  NgbModule
 ];
 
 @NgModule({
@@ -59,10 +64,13 @@ const APP_MODULE = [
     NavSearchComponent,
     NavRightComponent,
     ConfigurationComponent,
-    ToggleFullScreenDirective
+    ToggleFullScreenDirective,
+    LeaveRequestComponent,
+    TimesheetComponent,
+    ProfileComponent
   ],
   imports: APP_MODULE,
-  providers: [NavigationItem, authInterceptorProviders],
+  providers: [NavigationItem, authInterceptorProviders ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,6 +23,10 @@ export class AuthSigninComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
+
+      if(this.roles === 'admin'){
+
+      }
     }
 
   }
@@ -36,6 +40,11 @@ export class AuthSigninComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
+
+        localStorage.setItem('token','token');
+        localStorage.setItem('userType','employee');
+        // localStorage.setItem('userType','admin');
+        // alert(localStorage.getItem('token'));
 
         // router to navigate dashboard
         this.router.navigate(['dashboard/analytics']).then(() => {

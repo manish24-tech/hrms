@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col-sm-12">
+        <app-card cardTitle="My Profile">            
+            <div class="container mt-5">
+                <!-- <div class="row"> -->
+                <div class="col-md-6 offset-md-3">
+                    <!-- <ngb-card> -->
+                    <!-- <ngb-avatar class="mb-3" size="xxl" > -->
+                        <!-- <ng-template ngbAvatar> -->
+                            <div style="margin-left: 37%;">
+                                <img class="img-radius-profile" src="/assets/images/profile/bg-1.jpg" alt="Avatar" />
+                            </div>
+                            <br>
+                        <!-- </ng-template> -->
+                    <!-- </ngb-avatar> -->
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{name}}</h5>
+                        <p class="card-text">{{bio}}</p>
+                        <div class="social-links">
+                        <a *ngFor="let link of socialLinks" class="social-link" [href]="link.url"><i class="fab {{link.icon}}"></i></a>
+                        </div>
+                        <button class="btn btn-primary" (click)="open(editProfileModal)">Edit Profile</button>
+                    </div>
+                    <!-- </ngb-card> -->
+                </div>
+                <!-- </div> -->
+            </div>
+            
+            <ng-template #editProfileModal let-modal>
+                <div class="modal-header">
+                <h4 class="modal-title">Edit Profile</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <!-- <p>Update your profile information:</p> -->
+                <!-- Add form input fields here -->
+                <div class="card">
+                    <div class="card-header">
+                      <b>Profile</b>
+                      <button class="btn btn-link float-right" (click)="editMode = !editMode">
+                        {{ editMode ? 'Cancel' : 'Edit' }}
+                      </button>
+                    </div>
+                    <div class="card-body">
+                      <form [ngClass]="{ 'd-none': !editMode }">
+                        <div class="form-group">
+                          <b><label for="name">Name</label></b>
+                          <input id="name" class="form-control" [(ngModel)]="name" name="name">
+                        </div>
+                        <div class="form-group row">
+                        <div class="col-sm-6">
+                          <b><label for="email">Email</label></b>
+                          <input id="email" class="form-control" [(ngModel)]="email" name="email">
+                        </div>
+                        <div class="col-sm-6">
+                          <b><label for="number">Mobile Number</label></b>
+                            <input id="mob" class="form-control" [(ngModel)]="mob" name="mob">
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <b><label for="bio">Bio</label></b>
+                            <input id="bio" class="form-control" [(ngModel)]="bio" name="bio">
+                        </div>
+                        <!-- <div class="form-group">
+                            <b><label for="number">Mobile Number</label></b>
+                            <input id="mob" class="form-control" [(ngModel)]="mob" name="mob">
+                        </div> -->
+                      </form>
+                      <div [ngClass]="{ 'd-none': editMode }">
+                        <p><b>Name:</b> {{ name }}</p>
+                        <p><b>Email:</b> {{ email }}  &nbsp;<b>mob:</b> {{ mob }}</p>
+                        <p><b>Bio:</b> {{ bio }}</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="saveProfile()">Save</button>
+                </div>
+            </ng-template>
+            
+          </app-card>
+    </div>
+</div>
